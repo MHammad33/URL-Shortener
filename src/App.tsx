@@ -1,12 +1,15 @@
-import { Button } from "@/components/ui/button";
+import { UrlForm } from "@/components/UrlForm";
 
 function App() {
+	const handleUrlSubmit = (url: string) => {
+		console.log("Shorten URL:", url);
+		// Here, you can call the API to create the short URL
+	};
+
 	return (
 		<div className="p-4">
 			<h1 className="text-3xl font-bold underline">URL Shortener</h1>
-			<Button variant="outline" className="mt-4">
-				Test ShadCN Button
-			</Button>
+			<UrlForm onSubmit={handleUrlSubmit} />
 		</div>
 	);
 }
