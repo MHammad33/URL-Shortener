@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Layout } from "@/components/Layout";
 import { UrlForm } from "@/components/UrlForm";
 import { UrlList } from "@/components/UrlList";
-import { Layout } from "@/components/Layout";
 import { createShortUrl, getUrls } from "@/services/api";
 
-export default function App() {
+export default function Home() {
 	const [urls, setUrls] = useState<any[]>([]);
 	const [loading, setLoading] = useState(false);
 
