@@ -8,6 +8,13 @@
       "DOM",
       "DOM.Iterable"
     ],
+    "types": [
+      "node",
+      "estree"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
