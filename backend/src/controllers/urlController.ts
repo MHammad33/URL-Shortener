@@ -51,6 +51,32 @@ export const deleteUrlById = async (
 	res.status(200).send(deletedUrl);
 };
 
+export const updateUrlById = async (
+	req: Request<{ urlId: string }, {}, { newOriginalUrl: string }>,
+	res: Response
+) => {
+	const { urlId } = req.params;
+	const { newOriginalUrl } = req.body;
+
+	console.log("New Url", newOriginalUrl);
+
+	if (!newOriginalUrl || typeof newOriginalUrl !== "string") {
+		res.status(400).json({ error: "Invalid or missing URL." });
+		return;
+	}
+
+	const url = await Url.findById(urlId);
+	if (!url) {
+		res.status(404).send("URL not found");
+		return;
+	}
+
+	url.originalUrl = newOriginalUrl;
+	await url.save();
+
+	res.status(200).json(url);
+};
+
 export const redirectToOriginalURL = async (
 	req: Request<{ shortUrl: string }, {}, {}>,
 	res: Response

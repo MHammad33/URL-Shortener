@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Layout } from "@/components/Layout";
 import { UrlForm } from "@/components/UrlForm";
 import { UrlList } from "@/components/UrlList";
-import { createShortUrl, deleteUrl, getUrls } from "@/services/api";
+import { createShortUrl, deleteUrl, getUrls, updateUrl } from "@/services/api";
 import { UrlItem } from "@/types/url.types";
 import { toast } from "sonner";
 
@@ -48,6 +48,21 @@ export default function Home() {
 		}
 	};
 
+	const handleEditUrl = async (id: string, updatedUrl: string) => {
+		try {
+			const updated = await updateUrl(id, updatedUrl);
+			setUrls((prevUrls) =>
+				prevUrls.map((url) =>
+					url.id === id ? { ...url, originalUrl: updated.originalUrl } : url
+				)
+			);
+			toast.success("URL updated successfully!");
+		} catch (error) {
+			console.error("Error updating URL:", error);
+			toast.error("Failed to update URL.");
+		}
+	};
+
 	return (
 		<Layout>
 			<UrlForm onSubmit={handleUrlSubmit} />
@@ -57,7 +72,11 @@ export default function Home() {
 					<span>Loading...</span>
 				</div>
 			) : (
-				<UrlList urls={urls} onEdit={() => {}} onDelete={handleDeleteUrl} />
+				<UrlList
+					urls={urls}
+					onEdit={handleEditUrl}
+					onDelete={handleDeleteUrl}
+				/>
 			)}
 		</Layout>
 	);

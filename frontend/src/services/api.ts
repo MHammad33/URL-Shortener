@@ -14,7 +14,7 @@ export async function getUrls() {
 
 export async function updateUrl(id: string, updatedUrl: string) {
 	const response = await axios.patch(`/api/urls/${id}`, {
-		originalUrl: updatedUrl,
+		newOriginalUrl: updatedUrl,
 	});
 	return response.data;
 }

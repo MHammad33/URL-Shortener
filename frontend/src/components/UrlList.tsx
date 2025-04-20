@@ -15,7 +15,7 @@ import { toast } from "sonner";
 interface UrlListProps {
 	urls: UrlItem[];
 	onDelete: (id: string) => void;
-	onEdit: (url: UrlItem) => void;
+	onEdit: (id: string, updatedUrl: string) => void;
 }
 
 const baseUrl = "http://localhost:3000";
@@ -27,8 +27,9 @@ export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 		setEditingUrl(url);
 	};
 
-	const handleSave = (updatedUrl: UrlItem) => {
+	const handleSave = (urlId: string, updatedUrl: string) => {
 		console.log("Saving updated URL", updatedUrl);
+		onEdit(urlId, updatedUrl);
 		setEditingUrl(null);
 	};
 

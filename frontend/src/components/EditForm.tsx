@@ -4,16 +4,16 @@ import { UrlItem } from "@/types/url.types";
 
 interface EditFormProps {
 	url: UrlItem;
-	onSave: (updatedUrl: UrlItem) => void;
+	onSave: (id: string, updatedUrl: string) => void;
 	onCancel: () => void;
 }
 
 export function EditForm({ url, onSave, onCancel }: EditFormProps) {
-	const [newUrl, setNewUrl] = useState(url.url);
+	const [newUrl, setNewUrl] = useState<string>(url.originalUrl);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		onSave({ ...url, url: newUrl });
+		onSave(url.id, newUrl);
 	};
 
 	return (
