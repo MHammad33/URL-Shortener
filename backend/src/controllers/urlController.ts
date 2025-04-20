@@ -50,3 +50,23 @@ export const deleteUrlById = async (
 	const deletedUrl = await Url.findByIdAndDelete(urlId);
 	res.status(200).send(deletedUrl);
 };
+
+export const redirectToOriginalURL = async (
+	req: Request<{ shortUrl: string }, {}, {}>,
+	res: Response
+) => {
+	console.log("HEy");
+
+	const { shortUrl } = req.params;
+	const url = await Url.findOne({ shortUrl });
+
+	if (!url) {
+		res.status(404).send("Url not found");
+		return;
+	}
+
+	url.accessCount++;
+	await url.save();
+
+	res.redirect(url.originalUrl);
+};
