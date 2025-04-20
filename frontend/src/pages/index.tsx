@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Layout } from "@/components/Layout";
 import { UrlForm } from "@/components/UrlForm";
 import { UrlList } from "@/components/UrlList";
-import { createShortUrl, getUrls } from "@/services/api";
+import { createShortUrl, deleteUrl, getUrls } from "@/services/api";
 import { UrlItem } from "@/types/url.types";
 
 export default function Home() {
@@ -36,6 +36,17 @@ export default function Home() {
 		}
 	};
 
+	const handleDeleteUrl = async (urlId: string) => {
+		try {
+			await deleteUrl(urlId);
+			setUrls((prev) => prev.filter((url) => url.id !== urlId));
+			setMessage("URL deleted successfully.");
+		} catch (error) {
+			console.error("Error deleting URL:", error);
+			setMessage("Failed to delete URL.");
+		}
+	};
+
 	return (
 		<Layout>
 			<UrlForm onSubmit={handleUrlSubmit} />
@@ -45,7 +56,7 @@ export default function Home() {
 					<span>Loading...</span>
 				</div>
 			) : (
-				<UrlList urls={urls} onEdit={() => {}} onDelete={() => {}} />
+				<UrlList urls={urls} onEdit={() => {}} onDelete={handleDeleteUrl} />
 			)}
 		</Layout>
 	);

@@ -1,15 +1,23 @@
+import axios from "axios";
+
 export async function createShortUrl(longUrl: string) {
-	const response = await fetch("/api/shorten", {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ longUrl }),
-	});
-	if (!response.ok) throw new Error("Failed to shorten URL");
-	return response.json();
+	const response = await axios.post("/api/shorten", { originalUrl: longUrl });
+	return response.data;
 }
 
 export async function getUrls() {
-	const response = await fetch("/api/urls");
-	if (!response.ok) throw new Error("Failed to fetch URLs");
-	return response.json();
+	const response = await axios.get("/api/urls");
+	return response.data;
+}
+
+export async function updateUrl(id: string, updatedUrl: string) {
+	const response = await axios.patch(`/api/urls/${id}`, {
+		originalUrl: updatedUrl,
+	});
+	return response.data;
+}
+
+export async function deleteUrl(id: string) {
+	const response = await axios.delete(`/api/urls/${id}`);
+	return response.data;
 }

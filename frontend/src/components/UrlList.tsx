@@ -23,16 +23,16 @@ export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 	const [editingUrl, setEditingUrl] = useState<UrlItem | null>(null);
 
 	const handleEdit = (url: UrlItem) => {
-		setEditingUrl(url); // Set the selected URL to edit
+		setEditingUrl(url);
 	};
 
 	const handleSave = (updatedUrl: UrlItem) => {
 		console.log("Saving updated URL", updatedUrl);
-		setEditingUrl(null); // Close the form after saving
+		setEditingUrl(null);
 	};
 
 	const handleCancel = () => {
-		setEditingUrl(null); // Close the form if cancel is clicked
+		setEditingUrl(null);
 	};
 
 	if (editingUrl) {
@@ -104,7 +104,13 @@ export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 										className="cursor-pointer"
 										variant="outline"
 										size="sm"
-										onClick={() => onDelete(url.id)}
+										onClick={() => {
+											if (
+												confirm("Are you sure you want to delete this URL?")
+											) {
+												onDelete(url.id);
+											}
+										}}
 									>
 										Delete
 									</Button>
