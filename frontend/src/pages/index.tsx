@@ -4,6 +4,7 @@ import { UrlForm } from "@/components/UrlForm";
 import { UrlList } from "@/components/UrlList";
 import { createShortUrl, deleteUrl, getUrls } from "@/services/api";
 import { UrlItem } from "@/types/url.types";
+import { toast } from "sonner";
 
 export default function Home() {
 	const [urls, setUrls] = useState<UrlItem[]>([]);
@@ -29,10 +30,10 @@ export default function Home() {
 		try {
 			const newUrl = await createShortUrl(url);
 			setUrls((prevUrls) => [...prevUrls, newUrl]);
-			setMessage("URL successfully shortened!");
+			toast.success("URL successfully shortened!");
 		} catch (error) {
 			console.error("Error creating short URL:", error);
-			setMessage("Failed to shorten URL. Please try again.");
+			toast.error("Failed to shorten URL. Please try again.");
 		}
 	};
 
@@ -40,10 +41,10 @@ export default function Home() {
 		try {
 			await deleteUrl(urlId);
 			setUrls((prev) => prev.filter((url) => url.id !== urlId));
-			setMessage("URL deleted successfully.");
+			toast.success("URL deleted successfully.");
 		} catch (error) {
 			console.error("Error deleting URL:", error);
-			setMessage("Failed to delete URL.");
+			toast.error("Failed to delete URL.");
 		}
 	};
 

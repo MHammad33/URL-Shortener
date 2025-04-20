@@ -10,6 +10,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
+import { toast } from "sonner";
 
 interface UrlListProps {
 	urls: UrlItem[];
@@ -105,11 +106,16 @@ export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 										variant="outline"
 										size="sm"
 										onClick={() => {
-											if (
-												confirm("Are you sure you want to delete this URL?")
-											) {
-												onDelete(url.id);
-											}
+											toast("Are you sure you want to delete this URL?", {
+												action: {
+													label: "Delete",
+													onClick: () => onDelete(url.id),
+												},
+												cancel: {
+													label: "Cancel",
+													onClick: () => console.log("Delete action canceled"),
+												},
+											});
 										}}
 									>
 										Delete
@@ -118,11 +124,12 @@ export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 										className="cursor-pointer"
 										variant="secondary"
 										size="sm"
-										onClick={() =>
+										onClick={() => {
 											navigator.clipboard.writeText(
 												`${baseUrl}/${url.shortUrl}`
-											)
-										}
+											);
+											toast.message("Link copied to clipboard!");
+										}}
 									>
 										Copy
 									</Button>

@@ -1,7 +1,9 @@
 import axios from "axios";
 
 export async function createShortUrl(longUrl: string) {
-	const response = await axios.post("/api/shorten", { originalUrl: longUrl });
+	const response = await axios.post("/api/urls/shorten", {
+		originalUrl: longUrl,
+	});
 	return response.data;
 }
 
