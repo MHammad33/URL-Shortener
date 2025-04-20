@@ -1,17 +1,15 @@
-import express from "express";
 import dotenv from "dotenv";
+import connectDB from "./db";
+import app from "./app";
 
 dotenv.config();
 
-const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(express.json());
-
-app.get("/", (_req, res) => {
-	res.send("Hello from Express + TypeScript!");
-});
-
-app.listen(PORT, () => {
-	console.log(`Server is running at http://localhost:${PORT}`);
-});
+connectDB()
+	.then(() => {
+		app.listen(PORT, () => {
+			console.log(`[server]: Server is running at http://localhost:${PORT}`);
+		});
+	})
+	.catch((error) => console.log("DB connection failed", error));
