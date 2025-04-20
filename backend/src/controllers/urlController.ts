@@ -29,3 +29,24 @@ export const createShortUrl = async (
 		res.status(500).json({ error: "Failed to create short URL." });
 	}
 };
+
+export const getShortenUrls = async (_req: Request, res: Response) => {
+	const shortenUrls = await Url.find({});
+	res.status(200).json(shortenUrls);
+};
+
+export const deleteUrlById = async (
+	req: Request<{ urlId: string }, {}, {}>,
+	res: Response
+) => {
+	const { urlId } = req.params;
+	const shortenUrl = await Url.findById(urlId);
+
+	if (!shortenUrl) {
+		res.status(404).send("Url not found");
+		return;
+	}
+
+	const deletedUrl = await Url.findByIdAndDelete(urlId);
+	res.status(200).send(deletedUrl);
+};
