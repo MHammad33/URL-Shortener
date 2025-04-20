@@ -9,7 +9,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/components/ui/table"; // Assuming ShadCN has Table components
+} from "@/components/ui/table";
 
 interface UrlListProps {
 	urls: UrlItem[];
@@ -93,6 +93,7 @@ export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 							<TableCell>
 								<div className="flex gap-2 justify-end">
 									<Button
+										className="cursor-pointer"
 										variant="outline"
 										size="sm"
 										onClick={() => handleEdit(url)}
@@ -100,6 +101,7 @@ export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 										Edit
 									</Button>
 									<Button
+										className="cursor-pointer"
 										variant="outline"
 										size="sm"
 										onClick={() => onDelete(url.id)}
@@ -107,6 +109,7 @@ export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 										Delete
 									</Button>
 									<Button
+										className="cursor-pointer"
 										variant="secondary"
 										size="sm"
 										onClick={() =>

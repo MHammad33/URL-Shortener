@@ -41,7 +41,7 @@ export function UrlForm({ onSubmit }: UrlFormProps) {
 					onChange={(e) => setUrl(e.target.value)}
 					className="flex-1"
 				/>
-				<Button type="submit" className="w-full md:w-auto">
+				<Button type="submit" className="w-full md:w-auto cursor-pointer">
 					Shorten
 				</Button>
 			</div>
