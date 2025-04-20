@@ -1,6 +1,8 @@
 export interface UrlItem {
 	id: string;
-	url: string;
-	shortCode: string;
+	originalUrl: string;
+	shortUrl: string;
 	accessCount: number;
+	createdAt: Date;
+	updatedAt: Date;
 }

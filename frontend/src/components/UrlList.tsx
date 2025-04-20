@@ -17,7 +17,7 @@ interface UrlListProps {
 	onEdit: (url: UrlItem) => void;
 }
 
-const baseUrl = "http://localhost:5173"; // Or move to .env later
+const baseUrl = "http://localhost:3000";
 
 export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 	const [editingUrl, setEditingUrl] = useState<UrlItem | null>(null);
@@ -71,22 +71,22 @@ export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 						<TableRow key={url.id}>
 							<TableCell>
 								<a
-									href={url.url}
+									href={url.originalUrl}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-primary font-medium break-words hover:underline"
 								>
-									{url.url}
+									{url.originalUrl}
 								</a>
 							</TableCell>
 							<TableCell>
 								<a
-									href={`${baseUrl}/${url.shortCode}`}
+									href={`${baseUrl}/${url.shortUrl}`}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-green-600 font-semibold break-words hover:underline"
 								>
-									{`${baseUrl}/${url.shortCode}`}
+									{`${baseUrl}/${url.shortUrl}`}
 								</a>
 							</TableCell>
 							<TableCell>{url.accessCount}</TableCell>
@@ -114,7 +114,7 @@ export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 										size="sm"
 										onClick={() =>
 											navigator.clipboard.writeText(
-												`${baseUrl}/${url.shortCode}`
+												`${baseUrl}/${url.shortUrl}`
 											)
 										}
 									>

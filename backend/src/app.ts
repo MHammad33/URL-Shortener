@@ -11,6 +11,6 @@ app.use(express.json());
 app.use("/urls", urlRoutes);
 
 // Redirect to original url
-app.get("/shortUrls/:shortUrl", redirectToOriginalURL);
+app.get("/:shortUrl", redirectToOriginalURL);
 
 export default app;
