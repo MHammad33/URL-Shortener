@@ -26,7 +26,7 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone -b dev https://github.com/MHammad33/MuhammadHammad-innovaxel-Afzal.git
+   git clone -b dev https://github.com/MHammad33/URL-Shortener.git
    ```
 
 2. **Install dependencies:**
