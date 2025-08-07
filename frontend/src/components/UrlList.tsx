@@ -18,7 +18,7 @@ interface UrlListProps {
 	onEdit: (id: string, updatedUrl: string) => void;
 }
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export function UrlList({ urls, onDelete, onEdit }: UrlListProps) {
 	const [editingUrl, setEditingUrl] = useState<UrlItem | null>(null);

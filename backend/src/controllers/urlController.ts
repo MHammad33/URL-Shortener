@@ -13,9 +13,15 @@ export const createShortUrl = async (
 		return;
 	}
 
-	const shortUrl = v4().substring(0, 10);
-
-	console.log("Short URL: ", shortUrl);
+	let shortUrl;
+	let isUnique = false;
+	while (!isUnique) {
+		shortUrl = v4().replace(/-/g, "").substring(0, 10);
+		const existing = await Url.findOne({ shortUrl });
+		if (!existing) {
+			isUnique = true;
+		}
+	}
 
 	try {
 		const createdUrl = await Url.create({
@@ -26,7 +32,11 @@ export const createShortUrl = async (
 
 		res.status(201).json(createdUrl);
 	} catch (error) {
-		res.status(500).json({ error: "Failed to create short URL." });
+		if (error instanceof Error) {
+			res.status(500).json({ error: error.message });
+		} else {
+			res.status(500).json({ error: "Failed to create short URL." });
+		}
 	}
 };
 

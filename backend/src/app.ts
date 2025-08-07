@@ -8,7 +8,7 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/urls", urlRoutes);
+app.use("/api/urls", urlRoutes);
 
 // Redirect to original url
 app.get("/:shortUrl", redirectToOriginalURL);
