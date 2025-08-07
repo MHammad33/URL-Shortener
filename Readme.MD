@@ -27,9 +27,13 @@ Before you begin, ensure you have the following installed:
 
    ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
    git clone https://github.com/MHammad33/URL-Shortener.git
 =======
    git clone -b dev https://github.com/MHammad33/MuhammadHammad-innovaxel-Afzal.git
+>>>>>>> dev
+=======
+   git clone -b dev https://github.com/MHammad33/URL-Shortener.git
 >>>>>>> dev
    ```
 
