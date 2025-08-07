@@ -5,7 +5,11 @@ import { redirectToOriginalURL } from "./controllers/urlController";
 
 const app: Express = express();
 
-app.use(cors());
+app.use(
+	cors({
+		origin: "*",
+	})
+);
 app.use(express.json());
 
 app.use("/api/urls", urlRoutes);
