@@ -9,7 +9,7 @@ import { toast } from "sonner";
 export default function Home() {
 	const [urls, setUrls] = useState<UrlItem[]>([]);
 	const [loading, setLoading] = useState(false);
-	const [message, setMessage] = useState<string | null>(null);
+	const [message] = useState<string | null>(null);
 
 	useEffect(() => {
 		async function fetchUrls() {
