@@ -26,14 +26,22 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository:**
 
    ```bash
+<<<<<<< HEAD
    git clone https://github.com/MHammad33/URL-Shortener.git
+=======
+   git clone -b dev https://github.com/MHammad33/MuhammadHammad-innovaxel-Afzal.git
+>>>>>>> dev
    ```
 
 2. **Install dependencies:**
    Navigate to the project directory and install the required packages:
 
    ```bash
+<<<<<<< HEAD
    cd URL-Shortener
+=======
+   cd MuhammadHammad-innovaxel-Afzal
+>>>>>>> dev
    cd backend
    npm install
    ```
